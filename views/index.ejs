@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Employee Management</title>
+</head>
+<body>
+  <h1>Employee List</h1>
+  <form action="/employees/create" method="POST">
+    <input type="text" name="name" placeholder="Name" required />
+    <input type="text" name="position" placeholder="Position" required />
+    <input type="text" name="department" placeholder="Department" required />
+    <button type="submit">Add Employee</button>
+  </form>
+  <ul>
+    <% employees.forEach(employee => { %>
+      <li>
+        <%= employee.name %> - <%= employee.position %> - <%= employee.department %>
+        <form action="/employees/update/<%= employee._id %>" method="POST">
+          <input type="text" name="position" placeholder="New Position" />
+          <button type="submit">Update</button>
+        </form>
+        <form action="/employees/delete/<%= employee._id %>" method="POST">
+          <button type="submit">Delete</button>
+        </form>
+      </li>
+    <% }) %>
+  </ul>
+</body>
+</html>
